@@ -6,7 +6,7 @@ dotenv.config();
 const { POSTGRES_HOST, POSTGRES_DB, POSTGRES_TEST_DB, POSTGRES_USER, POSTGRES_PASSWORD, ENV } = process.env;
 
 let Client;
-console.log("NODE ENV => ", ENV);
+console.log('\nNODE ENV =>', ENV, '\n');
 
 if (ENV === 'test') {
   Client = new Pool({
