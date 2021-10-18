@@ -9,13 +9,17 @@
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'",
     "lint": "eslint '*/**/*.ts' --quiet --fix",
     "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
-    "test": "jasmine-ts",
+    "create-test-db": "db-migrate db:create storefront_test",
+    "delete-test-db": "db-migrate db:drop storefront_test",
+    "test": "npm run create-test-db && db-migrate --env test up && ENV=test jasmine-ts && npm run delete-test-db",
     "tsc": "npx tsc"
   },
   "author": "Praveen Sripati",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "db-migrate": "^1.0.0-beta.16",
+    "db-migrate-pg": "^1.2.2",
     "express": "^4.17.1",
     "pg": "^8.5.1"
   },
