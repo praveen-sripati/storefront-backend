@@ -22,7 +22,7 @@ export class ProductStore {
     }
   }
 
-  async show(id: string) {
+  async show(id: number) {
     try {
       // @ts-ignore
       const conn = await Client.connect();
@@ -48,7 +48,7 @@ export class ProductStore {
     }
   }
 
-  async delete(id: string): Promise<Product> {
+  async delete(id: number): Promise<Product> {
     try {
       const sql = 'DELETE FROM products WHERE id=($1) RETURNING *';
       // @ts-ignore

@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import { Product, ProductStore } from '../models/product';
 
 const store = new ProductStore();
@@ -7,6 +7,18 @@ const index = async (_req: Request, res: Response): Promise<void> => {
   try {
     const products = await store.index();
     res.json(products);
+  } catch (error) {
+    res.status(400);
+    res.json(error);
+    return;
+  }
+};
+
+const show = async (req: Request, res: Response): Promise<void> => {
+  const id = parseInt(req.params.id);
+  try {
+    const product = await store.show(id);
+    res.json(product);
   } catch (error) {
     res.status(400);
     res.json(error);
@@ -36,10 +48,14 @@ const destroy = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-const products_routes = (app: express.Application): void => {
+const products_routes = (
+  app: express.Application,
+  verifyAuthToken: (req: Request, res: Response, next: NextFunction) => void,
+): void => {
   app.get('/products', index);
-  app.post('/products', create);
-  app.delete('/products', destroy);
+  app.get('/products/:id', show);
+  app.post('/products', verifyAuthToken, create);
+  app.delete('/products', verifyAuthToken, destroy);
 };
 
 export default products_routes;
