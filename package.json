@@ -9,6 +9,8 @@
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'",
     "lint": "eslint '*/**/*.ts' --quiet --fix",
     "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "create-db": "db-migrate db:create storefront",
+    "delete-db": "db-migrate db:create storefront",
     "create-test-db": "db-migrate db:create storefront_test",
     "delete-test-db": "db-migrate db:drop storefront_test",
     "test": "npm run create-test-db && db-migrate --env test up && ENV=test jasmine-ts && npm run delete-test-db",
