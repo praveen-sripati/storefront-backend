@@ -80,7 +80,7 @@ export const user_routes = (
 ): void => {
   app.get('/users', verifyAuthToken, index);
   app.get('/users/:username', verifyAuthToken, show);
-  app.post('/users', create);
+  app.post('/users', verifyAuthToken, create);
   app.post('/user/authenticate', authenticate);
-  app.delete('/users', destroy);
+  app.delete('/users', verifyAuthToken, destroy);
 };

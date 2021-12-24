@@ -3,37 +3,46 @@ The company stakeholders want to create an online storefront to showcase their g
 
 These are the notes from a meeting with the frontend developer that describe what endpoints the API needs to supply, as well as data shapes the frontend and backend have agreed meet the requirements of the application. 
 
-## API Endpoints
-#### Products
-- Index 
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
+## API Endpoints & Routes
+### Products
+- Index => **/products** `GET`
+- Show => **/products/:id)** `GET`
+- Create [token required] => **/products** `POST`
+- Delete [token required] => **/products** `DELETE`
+- [OPTIONAL] Five Most Expensive products => **/five-most-expensive** `GET`
+- [OPTIONAL] Products in Orders => **/products-in-orders** `GET`
+- [OPTIONAL] Top 5 most popular products - **Not Done**
+- [OPTIONAL] Products by category (args: product category) - **Not Done**
 
-#### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
-
-#### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+### Users
+- Index [token required] => **/users** `GET` 
+- Show [token required] => **/users/:username** `GET` 
+- Create [token required] => **/users** `POST`
+- Delete [token required]=> **/users** `DELETE`
+- Authenticate => **/user/authenticate** `POST`
+### Orders
+- Index => **/orders** `GET`
+- Show => **/orders/:id** `GET`
+- Create => **/orders** `GET`
+- Delete => **/orders** `DELETE`
+- Current Order by user (args: user id)[token required] => **/current-order-of-user** `GET`
+- [OPTIONAL] Completed Orders by user (args: user id)[token required] => **/completed-orders-of-user** `POST`
+- [OPTIONAL] Users with orders => **/users-with-orders** `GET`
 
 ## Data Shapes
-#### Product
--  id
+### Product
+- id
 - name
 - price
 - [OPTIONAL] category
 
-#### User
+### User
 - id
 - firstName
 - lastName
 - password
 
-#### Orders
+### Order
 - id
 - id of each product in the order
 - quantity of each product in the order

@@ -11,7 +11,7 @@ dotenv.config();
 
 const app: express.Application = express();
 const port = 3000;
-const address = `0.0.0.0:${port}`;
+const address = `localhost:${port}`;
 
 const verifyAuthToken = (req: Request, res: Response, next: NextFunction): void => {
   try {
