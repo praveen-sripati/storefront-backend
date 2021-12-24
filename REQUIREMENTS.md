@@ -31,21 +31,24 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## Data Shapes
 ### Product
-- id
-- name
-- price
-- [OPTIONAL] category
+- id `SERIAL PRIMARY KEY`
+- name `VARCHAR(100) NOT NULL`
+- price `DECIMAL(10,2) NOT NULL`
 
 ### User
-- id
-- firstName
-- lastName
-- password
+- id `SERIAL PRIMARY KEY`
+- firstName `VARCHAR(100) NOT NULL`
+- lastName `VARCHAR(100) NOT NULL`
+- username `VARCHAR(100) NOT NULL`
+- password digest `VARCHAR NOT NULL`
 
 ### Order
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete)
+- id `SERIAL PRIMARY KEY`
+- user_id `bigint REFERENCES users(id))`
+- status of order (active or complete) `VARCHAR(15) NOT NULL`
 
+### Order-Product
+- id `SERIAL PRIMARY KEY`
+- id of each order `bigint REFERENCES orders(id)`
+- id of each product `bigint REFERENCES products(id)`
+- quantity of each product in the order `integer`
