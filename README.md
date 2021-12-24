@@ -25,3 +25,17 @@ Your application must make use of the following libraries:
 
 ## License
 [Udacity](LICENSE)
+
+## Environment Variables (.env)
+
+```javascript
+POSTGRES_HOST=127.0.0.1
+POSTGRES_DB=storefront
+POSTGRES_TEST_DB=storefront_test
+POSTGRES_USER=praveen
+POSTGRES_PASSWORD=postgres
+ENV=dev
+BCRYPT_PASSWORD=haha-my-friend
+SALT_ROUNDS=10
+TOKEN_SECRET=something
+```
